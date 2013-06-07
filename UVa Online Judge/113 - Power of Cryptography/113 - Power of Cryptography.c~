@@ -1,0 +1,29 @@
+//113 - Power of Cryptography
+//Guido Luz Percu - 27/05/2012
+/*#include <iostream>
+#include <cmath> // ou math.h
+#include <iomanip>
+using namespace std;
+int main() 
+{   // p = base | n = raiz | k = resultado
+	double n, p;   
+	while(1) { 
+		cin >> n; 
+		cin >> p;
+		if (cin.eof())	break;
+		else cout << pow(p, 1/n) << endl;
+	}
+    return 0;
+}*/
+#include <math.h>
+#include <stdio.h>
+
+int main() {
+  double n, p, k;
+  while (scanf("%lf %lf", &n, &p) == 2) { //garantir que são 2 números
+     //k = exp(log(p)/n);
+	 k = pow(p, 1/n);
+     printf("%.0lf\n", k);
+  }
+  return 0;
+}

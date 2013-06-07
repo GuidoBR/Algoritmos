@@ -1,0 +1,23 @@
+//ideone.com/L9e9zK - Algoritmos Aula 1 - 24/11/12
+#include <iostream>
+using namespace std;
+ 
+int main() {
+    int T, puloalto, pulobaixo, numParedes, muro, novoMuro;
+    cin >> T;
+    for (int i = 1; i <= T; i++) {
+        puloalto = pulobaixo = 0;
+        cin >> numParedes;
+        cin >> muro;
+        for (int j = 1; j < numParedes; j++) {
+            cin >> novoMuro;
+            if (novoMuro > muro)
+                puloalto++;
+            else if (novoMuro < muro)
+                pulobaixo++;
+            muro = novoMuro;
+        }
+        cout << "Case " << i << ": " << puloalto << " " << pulobaixo << endl;    
+    }
+    return 0;    
+}

@@ -1,0 +1,161 @@
+//http://ideone.com/EWZUii - Algoritmos Aula 1 - 24/11/12
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <string.h>
+using namespace std;
+ 
+int main() {
+    int n;
+    vector<int> letters;
+    vector<int>::iterator it;
+    char c;
+    char state[12];
+    cin >> n;
+    for (int i = 0; i < n; ++i) {
+        memset(state,' ',sizeof(char)*12);
+        for (int j = 0; j < 3; ++j) {
+            letters.clear();
+            while(cin >> c) {
+               if ((c == 'e' || c == 'u' || c == 'd') && !letters.empty()) break;
+               if (c >=65 && c<=90) {
+                    letters.push_back(c);  
+               }
+            }
+            if (c == 'e') {
+                for (it = letters.begin(); it != letters.end(); ++it) {
+                    state[*it-65] = '='; 
+                }
+            } else {
+                int middle = letters.size()/2;
+                if (c == 'u') {
+                    for (int k = 0; k < middle; ++k) {
+                        int l = letters[k]-65;
+                        if (state[l] != '=') {
+                            if (state[l] == 'l') {
+                                state[l] = '=';
+                            } else if (state[l] == 'p') {
+                                bool even = false;
+                                for (int m = middle; m < letters.size(); ++m) {
+                                    if (state[letters[m]-65] == 'l') {
+                                        even = true;
+                                        break;
+                                    }
+                                }
+                                if (!even) {
+                                    state[l] = 'P';
+                                }
+                            } else {
+                                state[l] = 'p';
+                            }
+                        }
+                    }
+                    for (int k = middle; k < letters.size(); ++k) {
+                        int l = letters[k]-65;
+                        if (state[l] != '=') {
+                            if (state[l] == 'p') {
+                                state[l] = '=';
+                            } else if (state[l] == 'l') {
+                                bool even = false;
+                                for (int m = 0; m < middle; ++m) {
+                                    if (state[letters[m]-65] == 'p') {
+                                        even = true;
+                                        break;
+                                    }
+                                }
+                                if (!even) {
+                                    state[l] = 'L';                                    
+                                }
+                            } else {
+                                state[l] = 'l';
+                            }
+                        }
+                    }
+                } else if (c == 'd'){
+                     for (int k = 0; k < middle; ++k) {
+                        int l = letters[k]-65;
+                        if (state[l] != '=') {
+                            if (state[l] == 'p') {
+                                state[l] = '=';
+                            } if (state[l] == 'l') {
+                                bool even = false;
+                                for (int m = middle; m < letters.size(); ++m) {
+                                    if (state[letters[m]-65] == 'p') {
+                                        even = true;
+                                        break;
+                                    }
+                                }
+                                if (!even) {
+                                    state[l] = 'L';                                    
+                                }
+                            } else {
+                                state[l] = 'l';
+                            }
+                        }
+                    }
+                    for (int k = middle; k < letters.size(); ++k) {
+                        int l = letters[k]-65;
+                        if (state[l] != '=') {
+                            if (state[l] == 'l') {
+                                state[l] = '=';
+                            } if (state[l] == 'p') {
+                                bool even = false;
+                                for (int m = 0; m < middle; ++m) {
+                                    if (state[letters[m]-65] == 'l') {
+                                        even = true;
+                                        break;
+                                    }
+                                }
+                                if (!even) {
+                                    state[l] = 'P';                                    
+                                }
+                            } else {
+                                state[l] = 'p';
+                            }
+                        }
+                   } 
+                }
+                for (int k = 0; k < 12; ++k) {
+                    if (state[k] == ' ') {
+                        state[k] = '=';
+                    }
+                    bool exists;
+                    for (l = 0; l < letters.size(); ++l) {
+                        if (letters[l]-65 == k) {
+                            exists = true;
+                        }
+                    }
+                    if (!exists) {
+                        state[k] = '=';
+                    }
+                }
+            }
+            
+          for (int k = 0; k < 12; ++k) {
+            cout << state[k] << " ";
+          }
+            cout << endl;
+        }
+        int L, P;
+        L = P = 0;
+        for (int k = 0; k < 12; ++k) {
+            if (state[k]=='L') {L = k; break; }
+            if (state[k]=='P') {P = k; break; }
+        }
+        if (P != 0) {  
+            char l =  P+65;
+            cout << l << " is the counterfeit coin and it is heavy." << endl;
+        } else if (L != 0) {
+            char l =  L+65;
+            cout << l << " is the counterfeit coin and it is light." << endl ;   
+        } else {
+            for (int k = 0; k < 12; ++k) {
+                if (state[k] != '=') {    
+                     char l =  k+65;
+                    cout << l << " is the counterfeit coin and it is " << (state[k]=='l'?"light.":"heavy.") << endl;
+                    break;
+                }
+            }
+        }
+    }
+}

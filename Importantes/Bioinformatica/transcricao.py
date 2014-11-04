@@ -19,7 +19,6 @@ Licenca:
     MIT
 """
 def transcrever(dna):
-  """ Transforma string DNA em string RNAm """
-  return dna.replace('T', 'U')
+    return dna.replace('T', 'U')
 
 print(transcrever('ACGT'))

@@ -1,0 +1,703 @@
+﻿	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css" href="css/index.css">
+
+<title>Olimpíadas de Algoritmo Hostnet</title>
+
+
+
+
+
+<div id="gambi"><div class="plus">
+
+
+
+<div id="cabecalho">
+
+  <h1><a href="./">Olimpíadas de Algoritmo Hostnet</a></h1>
+
+
+
+  <p><span> <span> FAETEC de Quintino </span><br>ganha a 1ª OAH.</span> <a href="./nota4.html">Clique para mais informações sobre a inscrição.</a></p>
+
+  <p><span>Clique aqui para acessar o site da <span>OAH 2008</span></span> <a href="http://www.oah.com.br" target="_blank"></a></p>
+
+</div>
+
+
+
+<ul id="menu">
+
+  <li class="home"><a href="./">Home</a>
+
+  <li class="escolas"><a href="./escolas.html">Escolas</a>
+
+  <li class="regulamento"><a href="./regulamento.html">Regulamento</a>
+
+  <li class="datas"><a href="./datas.html">Datas</a>
+
+  <li class="apoio"><a href="./apoio.html">Apoio</a>
+
+  <li class="premios"><a href="./premios.html">Prêmios</a>
+
+  <li class="imprensa"><a href="./imprensa.html">Imprensa</a>
+
+</ul>
+
+
+
+<div id="conteudo" class="interna">
+
+  <div id="data">
+
+    <h2>Gabarito 2ª Fase</h2>
+
+
+
+<h3> Versão em pseudo código </h3>
+
+
+
+<div class="boxdef simpleinfo">
+
+
+
+<pre>
+
+{
+
+
+
+Gabarito oficial da fase final da Olimpíada de Algoritmo HostNet
+
+2007
+
+
+
+Versão em pseudo-código
+
+
+
+}
+
+
+
+
+
+
+
+{
+
+Questão a
+
+}
+
+
+
+PROCEDIMENTO PreencherVaga ( Vagas[1..4][1..9] : texto,
+
+Fileira : inteiro, Lado, Poltrona : texto )
+
+
+
+  VAR i : inteiro;
+
+
+
+  SE Lado = "direito" ENTÃO
+
+    CASO Poltrona SEJA
+
+      "janela"   : i <- 1;
+
+      "corredor" : i <- 2;
+
+    FIM CASO
+
+
+
+  SENÃO SE Lado = "esquerdo" ENTÃO
+
+    CASO Poltrona SEJA
+
+      "janela"   : i <- 4;
+
+      "corredor" : i <- 3;
+
+    FIM CASO
+
+
+
+  FIM SE
+
+
+
+  SE Vagas[i][Fileira] = "0" ENTÃO
+
+    Vagas[i][Fileira] <- "X";
+
+  SENÃO
+
+    IMPRIMIR('A vaga já está ocupada');
+
+
+
+FIM PROCEDIMENTO
+
+
+
+
+
+
+
+{
+
+Questão b
+
+}
+
+
+
+PROCEDIMENTO FileirasVazias ( Vagas[1..4][1..9] : texto )
+
+  VAR i, j : inteiro;
+
+  VAR Vazia : logico;
+
+
+
+  i <- 0;
+
+  j <- 0;
+
+
+
+  PARA i DE 1 ATÉ 9 FAÇA
+
+
+
+    Vazia <- VERDADEIRO;
+
+
+
+    PARA j DE 1 ATÉ 4 FAÇA
+
+      SE Vagas[j][i] = "X" ENTÃO
+
+        Vazia <- FALSO;
+
+      FIM SE
+
+    FIM PARA
+
+
+
+    SE Vazia <- VERDADEIRO ENTÃO
+
+      IMPRIMIR_NL(i);
+
+    FIM SE
+
+
+
+  FIM PARA
+
+
+
+FIM PROCEDIMENTO
+
+
+
+
+
+
+
+{
+
+Questão c
+
+}
+
+
+
+PROCEDIMENTO Relatório ( Vagas[1..4][1..9] : texto )
+
+  VAR i, j, Janela, Corredor, Vazio : inteiro;
+
+
+
+  i <- 0;
+
+  j <- 0;
+
+  Janela <- 0;
+
+  Corredor <- 0;
+
+  Vazio <- 0;
+
+
+
+  PARA i DE 1 ATÉ 9 FAÇA
+
+    IMPRIMIR(i , ' - ');
+
+
+
+    PARA j DE 1 ATÉ 4 FAÇA
+
+      IMPRIMIR(Vagas[j][i]);
+
+
+
+      SE Vagas[j][i] = "0" ENTÃO
+
+        Vazio <- Vazio + 1;
+
+      SENÃO
+
+        SE j = 1 OU j = 4 ENTÃO
+
+          Janela <- Janela + 1;
+
+        SENÃO
+
+          Corredor <- Corredor + 1;
+
+      FIM SE
+
+
+
+    FIM PARA
+
+
+
+     IMPRIMIR_NL('');
+
+  FIM PARA
+
+
+
+  IMPRIMIR_NL(Janela , ' Pessoas Janela');
+
+  IMPRIMIR_NL(Corredor , ' Pessoas Corredor');
+
+  IMPRIMIR_NL(Janela + Corredor , ' Total Ocupadas');
+
+  IMPRIMIR_NL(Vazio , ' Total de Vazias');
+
+
+
+FIM PROCEDIMENTO
+
+
+
+
+
+
+
+{
+
+Questão d
+
+}
+
+
+
+PROCEDIMENTO TotalArrecadado ( CidadesEnt[1..5] : int,
+
+CidadesSai[1..5] : int  )
+
+  VAR i, Total, Pessoas : inteiro;
+
+
+
+  i <- 0;
+
+  Total <- 0;
+
+  Pessoas <- 0;
+
+
+
+  { Cidade A até Cidade B }
+
+  Pessoas <- CidadesEnt[1];
+
+  Total <- Pessoas * 15;
+
+
+
+  { Cidade B até Cidade C, C até D e D até E }
+
+  PARA i DE 2 ATÉ 4 FAÇA
+
+    Pessoas <- ( Pessoas + CidadesEnt[i] ) - CidadesSai[i];
+
+
+
+    CASO i SEJA
+
+      2: Total <- Total + Pessoas * 12;
+
+      3: Total <- Total + Pessoas * 35;
+
+      4: Total <- Total + Pessoas * 53;
+
+    FIM CASO
+
+  FIM PARA
+
+
+
+  IMPRIMIR('Total arrecadado na rota: ' , Total);
+
+
+
+FIM PROCEDIMENTO
+
+
+
+</pre>
+
+
+
+</div>
+
+
+
+<h3> Versão em PHP </h3>
+
+
+
+
+
+<div class="boxdef simpleinfo">
+
+
+
+<pre>
+
+
+
+
+
+
+
+/**
+
+* Gabarito oficial da fase final da Olimpíada de Algoritmo HostNet
+
+* 2007
+
+*
+
+* Versão em PHP
+
+*
+
+**/
+
+
+
+/*
+
+  Questão a
+
+*/
+
+function PreencherVaga ( $Vagas, $Fileira, $Lado, $Poltrona ) {
+
+
+
+	if ( $Lado == "direito" ) {
+
+
+
+		switch ( $Poltrona ) {
+
+			case "janela":   $i = 1;
+
+			case "corredor": $i = 2;
+
+		}
+
+
+
+	}
+
+
+
+	if ( $Lado == "esquerdo" ) {
+
+
+
+		switch ( $Poltrona ) {
+
+			case "janela":   $i = 4;
+
+			case "corredor": $i = 3;
+
+		}
+
+
+
+	}
+
+
+
+	if ( $Vagas[$i][$Fileira] == "0" ) {
+
+  	$Vagas[$i][$Fileira] = "x";
+
+	} else {
+
+		print("A vaga já estava ocupada");
+
+	}
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+  Questão b
+
+*/
+
+function FileirasVazias ( $Vagas ) {
+
+
+
+	for( $i = 1; $i <= 9; $i++ ) {
+
+
+
+		$Vazia = true;
+
+
+
+		for( $j = 1; $j <= 4; $j++ ) {
+
+
+
+			if ( $Vagas[$j][$i] == "x" ) {
+
+				$Vazia = false;
+
+			}
+
+
+
+		}
+
+
+
+		if ( $Vazia == true ) {
+
+			print($i);
+
+		}
+
+
+
+	}
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+  Questão c
+
+*/
+
+function Relatorio ( $Vagas ) {
+
+
+
+  for ( $i = 1; $i <= 9; $i++ ) {
+
+    print($i . " - ");
+
+
+
+      for ( $j = 1; $j <= 4; $j++ ) {
+
+        print($Vagas[$j][$i]);
+
+
+
+        if ( $Vagas[$j][$i] == '0' ) {
+
+          $Vazia = $Vazia + 1;
+
+        } else {
+
+          if ( $j == 1 || $j == 4 ) {
+
+            $Janela = $Janela + 1;
+
+          } else {
+
+            $Corredor = $Corredor + 1;
+
+          }
+
+        }
+
+
+
+      }
+
+
+
+    print("\n");
+
+  }
+
+
+
+  print($Janela . " Pessoas Janela ");
+
+  print($Corredor . " Pessoas Corredor ");
+
+  print($Janela + $Corredor . " Total Ocupadas ");
+
+  print($Vazio . " Total de Vazias ");
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+  Questão d
+
+*/
+
+function TotalArrecadado ( $CidadesEnt, $CidadesSai ) {
+
+
+
+  // Cidade A até Cidade B
+
+  $Pessoas = $CidadesEnt[1];
+
+  $Total = $Pessoas * 15;
+
+
+
+  //Cidade B até Cidade C, C até D e D até E
+
+  for( $i = 2; $i <= 4; $i++ ) {
+
+
+
+    $Pessoas = ( $Pessoas + $CidadesEnt[$i] ) - $CidadesSai[i];
+
+
+
+	switch ( $i ) {
+
+		case '2': $Total = $Total + $Pessoas * 12;
+
+		case '3': $Total = $Total + $Pessoas * 35;
+
+		case '4': $Total = $Total + $Pessoas * 53;
+
+	}
+
+  }
+
+
+
+  print("Total arrecadado na rota: " . $Total);
+
+}
+
+
+
+
+
+
+
+
+
+</pre>
+
+
+
+</div>
+
+
+
+  </div>
+
+
+
+  <div id="apoio">
+
+    <h2>Apoio</h2>
+
+    <ul>
+
+      <li class="hostnet"><a href="http://www.hostnet.com.br" target="_blank">Hostnet</a></li>
+
+      <li class="ilearn"><a href="http://www.ilearn.com.br" target="_blank">Ilearn</a></li>
+
+      <li class="infnet"><a href="http://www.infnet.com.br" target="_blank">Infnet</a></li>
+
+      <li class="iped"><a href="http://www.iped.com.br" target="_blank">iPED</a></li>
+
+      <li class="abrasol"><a href="http://www.abrasol.org.br" target="_blank">Abrasol</a></li>
+
+      <li class="www"><a href="http://www.revistaw.com.br" target="_blank">Revista W</a></li>
+
+      <li class="imd"><a href="http://www.imd.com.br" target="_blank">IMD</a></li>
+
+    </ul>
+
+  </div>
+
+
+
+  <div class="cb"></div>
+
+</div>
+
+
+
+</div></div>
+
+
+
+<div id="rodape"><div>
+
+  copyright 2001–2007 Digirati<br />Todos os direitos reservados
+
+</div></div>

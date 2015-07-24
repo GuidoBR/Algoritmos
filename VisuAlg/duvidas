@@ -1,0 +1,13 @@
+- **** - DUVIDAS - **** -
+
+(->) A estrutura escolha... caso. Não se pode usar operadores? Exemplo:
+
+caso < 3 
+escreva("Este número é menor que 3")
+
+(->) Como fazer o segundo desafio do cápitulo 9?
+
+Escreva um algoritmo que calcule o número de notas e de moedas que deve ser dado de troco para
+um pagamento efetuado. O algoritmo deve ler o valor a ser pago e o valor efetivamente pago. Supor que
+o troco seja dado em notas de 50, 20, 10, 5, 2 e 1 real.
+

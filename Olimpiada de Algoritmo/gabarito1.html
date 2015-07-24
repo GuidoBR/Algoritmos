@@ -1,0 +1,947 @@
+﻿	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css" href="css/index.css">
+
+<title>Olimpíadas de Algoritmo Hostnet</title>
+
+
+
+
+
+<div id="gambi"><div class="plus">
+
+
+
+<div id="cabecalho">
+
+  <h1><a href="./">Olimpíadas de Algoritmo Hostnet</a></h1>
+
+
+
+  <p><span> <span> FAETEC de Quintino </span><br>ganha a 1ª OAH.</span> <a href="./nota4.html">Clique para mais informações sobre a inscrição.</a></p>
+
+ <p><span>Clique aqui para acessar o site da <span>OAH 2008</span></span> <a href="http://www.oah.com.br" target="_blank"></a></p>
+
+</div>
+
+
+
+<ul id="menu">
+
+  <li class="home"><a href="./">Home</a>
+
+  <li class="escolas"><a href="./escolas.html">Escolas</a>
+
+  <li class="regulamento"><a href="./regulamento.html">Regulamento</a>
+
+  <li class="datas"><a href="./datas.html">Datas</a>
+
+  <li class="apoio"><a href="./apoio.html">Apoio</a>
+
+  <li class="premios"><a href="./premios.html">Prêmios</a>
+
+  <li class="imprensa"><a href="./imprensa.html">Imprensa</a>
+
+</ul>
+
+
+
+<div id="conteudo" class="interna">
+
+  <div id="data">
+
+    <h2>Gabarito 1ª Fase</h2>
+
+
+
+<h3> Versão em pseudo código </h3>
+
+
+
+<div class="boxdef simpleinfo">
+
+
+
+<pre>
+
+{
+
+  Questão 1
+
+}
+
+FUNÇÃO PreencherTabuleiro : matriz
+
+  VAR Tab[1..8][1..8] : texto;
+
+  VAR l,c : inteiro;
+
+
+
+  PARA l DE 1 ATÉ 8 FAÇA
+
+    PARA c DE 1 ATÉ 8 FAÇA
+
+      Tab[l][c] <- '0';
+
+
+
+      SE l = 1 ENTÃO
+
+        CASO c SEJA
+
+          1,8: Tab[l][c] <- '4x';
+
+          2,7: Tab[l][c] <- '3x';
+
+          3,6: Tab[l][c] <- '5x';
+
+          4:   Tab[l][c] <- '1x';
+
+          5:   Tab[l][c] <- '2x';
+
+        FIM CASO
+
+      FIM SE
+
+
+
+      SE l = 2 ENTÃO
+
+        Tab[l][c] <- '6x';
+
+      FIM SE
+
+
+
+      SE l = 7 ENTÃO
+
+        Tab[l][c] <- '6y';
+
+      FIM SE
+
+
+
+      SE l = 8 ENTÃO
+
+        CASO c SEJA
+
+          1,8: Tab[l][c] <- '4y';
+
+          2,7: Tab[l][c] <- '3y';
+
+          3,6: Tab[l][c] <- '5y';
+
+          4:   Tab[l][c] <- '1y';
+
+          5:   Tab[l][c] <- '2y';
+
+        FIM CASO
+
+      FIM SE
+
+
+
+    FIM PARA
+
+  FIM PARA
+
+
+
+  RETORNAR Tab;
+
+
+
+FIM FUNÇÃO
+
+
+
+
+
+{
+
+  Questão 2
+
+}
+
+FUNÇÃO MoverPeca(Tab[1..8][1..8] : texto, li, ci, lf, cf : inteiro) :
+
+matriz
+
+
+
+  SE Tab[li][ci] = 0 ENTÃO
+
+    IMPRIMIR('Não há nenhuma peça na posição');
+
+    RETORNAR 0;
+
+  FIM SE
+
+
+
+
+
+  { Rei }
+
+  SE Tab[li][ci] = '1x' OU Tab[li][ci] = '1y' ENTÃO
+
+
+
+    SE li = lf OU ci = cf ENTÃO
+
+      SE ABSOLUTO(li - lf) = 1 OU ABSOLUTO(ci - cf) = 1 ENTÃO
+
+
+
+          SE Tab[lf][cf] <> 0 ENTÃO
+
+            IMPRIMIR('Captura Feita');
+
+          FIM SE
+
+
+
+          { MOVER }
+
+          Tab[lf][cf] <- Tab[li][ci];
+
+          Tab[li][ci] <- 0;
+
+
+
+          RETORNAR Tab;
+
+
+
+      FIM SE
+
+    FIM SE
+
+
+
+
+
+  { Torre }
+
+  SENÃO SE Tab[li][ci] = '4x' OU Tab[li][ci] = '4y' ENTÃO
+
+    SE li = lf OU ci = cf ENTÃO
+
+
+
+      SE Tab[lf][cf] <> 0 ENTÃO
+
+        IMPRIMIR('Captura Feita');
+
+      FIM SE
+
+
+
+      { MOVER }
+
+      Tab[lf][cf] <- Tab[li][ci];
+
+      Tab[li][ci] <- 0;
+
+
+
+      RETORNAR Tab;
+
+
+
+    FIM SE
+
+
+
+  { Bispo }
+
+  SENÃO SE Tab[li][ci] = '5x' OU Tab[li][ci] = '5y' ENTÃO
+
+    SE ABSOLUTO(li - lf) = ABSOLUTO(ci - cf) ENTÃO
+
+
+
+      SE Tab[lf][cf] <> 0 ENTÃO
+
+        IMPRIMIR('Captura Feita');
+
+      FIM SE
+
+
+
+      { MOVER }
+
+      Tab[lf][cf] <- Tab[li][ci];
+
+      Tab[li][ci] <- 0;
+
+
+
+      RETORNAR Tab;
+
+    FIM SE
+
+
+
+  FIM SE
+
+
+
+  IMPRIMIR('ERRO. Movimento incorreto.');
+
+  RETORNAR 0
+
+
+
+FIM FUNÇÃO
+
+
+
+
+
+{
+
+  Questão 3
+
+}
+
+PROCEDIMENTO Relatorio(Tab[1..8][1..8] : texto)
+
+
+
+  VAR l,c : inteiro;
+
+  VAR Posicao : texto;
+
+  VAR ReiX, DamaX, CavaloX, TorreX, BispoX, PeaoX
+
+  ReiY, DamaY, CavaloY, TorreY, BispoY, PeaoY, Nada : inteiro;
+
+
+
+
+
+  PARA l DE 1 ATÉ 8 FAÇA
+
+    PARA c DE 1 ATÉ 8 FAÇA
+
+
+
+      SE l = 1 E c >= 4 E c <= 5 ENTÃO
+
+        Posicao <- 'Valido'
+
+      FIM SE
+
+      SE l = 2 E c >= 4 E c <= 6 ENTÃO
+
+        Posicao <- 'Valido'
+
+      FIM SE
+
+      SE l = 3 E c >= 3 E c <= 6 ENTÃO
+
+        Posicao <- 'Valido'
+
+      FIM SE
+
+      SE l = 4 E c >= 3 E c <= 7 ENTÃO
+
+        Posicao <- 'Valido'
+
+      FIM SE
+
+      SE l = 5 E c >= 2 E c <= 7 ENTÃO
+
+        Posicao <- 'Valido'
+
+      FIM SE
+
+      SE l = 6 OU l = 7 ENTÃO
+
+        Posicao <- 'Valido'
+
+      FIM SE
+
+      SE l = 8 E c >= 2 E c <= 3 ENTÃO
+
+        Posicao <- 'Valido'
+
+      FIM SE
+
+
+
+      SE Posicao = 'Valido' ENTÃO
+
+        CASO Tab[l][c] SEJA
+
+          '0' : Nada <- Nada + 1;
+
+          '1x': ReiX <- ReiX + 1;
+
+          '2x': DamaX <- DamaX + 1;
+
+          '3x': CavaloX <- CavaloX + 1;
+
+          '4x': TorreX <- TorreX + 1;
+
+          '5x': BispoX <- BispoX + 1;
+
+          '6x': PeaoX <- PeaoX + 1;
+
+          '1y': ReiY <- ReiY + 1;
+
+          '2y': DamaY <- DamaY + 1;
+
+          '3y': CavaloY <- CavaloY + 1;
+
+          '4y': TorreY <- TorreY + 1;
+
+          '5y': BispoY <- BispoY + 1;
+
+          '6y': PeaoY <- PeaoY + 1;
+
+        FIM CASO
+
+      FIM SE
+
+
+
+    FIM PARA
+
+  FIM PARA
+
+
+
+
+
+  IMPRIMIR('
+
+    Jogador X
+
+    Rei - ' + ReiX + '
+
+    Dama - ' + DamaX + '
+
+    Cavalo - ' + CavaloX + '
+
+    Torre - ' + TorreX + '
+
+    Bispo - ' + BispoX + '
+
+    Peao - ' + PeaoX + '
+
+
+
+    Jogador Y
+
+    Rei - ' + ReiY + '
+
+    Dama - ' + DamaY + '
+
+    Cavalo - ' + CavaloY + '
+
+    Torre - ' + TorreY + '
+
+    Bispo - ' + BispoY + '
+
+    Peao - ' + PeaoY + '
+
+
+
+    Ausência - ' + Nada);
+
+
+
+FIM PROCEDIMENTO
+
+</pre>
+
+
+
+</div>
+
+
+
+<h3> Versão em PHP </h3>
+
+
+
+<div class="boxdef simpleinfo">
+
+
+
+<pre>
+
+
+
+/**
+
+* Gabarito oficial da 1 fase da Olimpíada de Algoritmo HostNet (OAH)
+
+*
+
+* Versão em PHP
+
+*
+
+**/
+
+
+
+/**
+
+*
+
+* Questão 1
+
+*
+
+**/
+
+
+
+function PreencherTabuleiro() {
+
+
+
+   for( $l = 1; $l <= 8; $l++ ) {
+
+      for( $c = 1; $c <= 8; $c++ ) {
+
+         $Tab[$l][$c] = '0';
+
+
+
+         if( $l == 1 ) {
+
+            switch( $c ) {
+
+               case 1 : case 8 : $Tab[$l][$c] = '4x'; break;
+
+               case 2 : case 7 : $Tab[$l][$c] = '3x'; break;
+
+               case 3 : case 6 : $Tab[$l][$c] = '5x'; break;
+
+               case 4 : $Tab[$l][$c] = '1x'; break;
+
+               case 5 : $Tab[$l][$c] = '2x'; break;
+
+            }
+
+         }
+
+
+
+         if ( $l == 2 ) {
+
+            $Tab[$l][$c] = '6x';
+
+         }
+
+
+
+         if ( $l == 7 ) {
+
+            $Tab[$l][$c] = '6y';
+
+         }
+
+
+
+         if( $l == 8 ) {
+
+            switch( $c ) {
+
+               case 1 : case 8 : $Tab[$l][$c] = '4y'; break;
+
+               case 2 : case 7 : $Tab[$l][$c] = '3y'; break;
+
+               case 3 : case 6 : $Tab[$l][$c] = '5y'; break;
+
+               case 4 : $Tab[$l][$c] = '1y'; break;
+
+               case 5 : $Tab[$l][$c] = '2y'; break;
+
+            }
+
+         }
+
+
+
+      }
+
+   }
+
+
+
+   return $Tab;
+
+
+
+}
+
+
+
+/**
+
+*
+
+* Questão 2
+
+*
+
+**/
+
+
+
+function MoverPeca( $Tab,$li,$ci,$lf,$cf ) {
+
+
+
+   if( $Tab[$li][$ci] == 0 ) {
+
+      print ( 'Posição vazia.' );
+
+      return FALSE;
+
+   }
+
+
+
+   // Rei
+
+   if( $Tab[$li][$ci] == '1x' or $Tab[$li][$ci] == '1y' ) {
+
+
+
+      if( $li == $lf or $ci == $cf ) {
+
+         if( abs($li - $lf) == 1 or abs($ci - $cf) == 1 ) {
+
+
+
+            if( $Tab[$lf][$cf] <> 0 ) {
+
+               print( 'Captura Feita' );
+
+            }
+
+
+
+            // MOVER
+
+            $Tab[$lf][$cf] = $Tab[$li][$ci];
+
+            $Tab[$li][$ci] = 0;
+
+
+
+            return $Tab;
+
+
+
+         }
+
+      }
+
+   }
+
+
+
+   // Torre
+
+   elseif( $Tab[$li][$ci] == '4x' or $Tab[$li][$ci] == '4y' ) {
+
+
+
+      if( $li == $lf or $ci == $cf ) {
+
+
+
+         if( $Tab[$lf][$cf] <> 0 ) {
+
+            print( 'Captura Feita' );
+
+         }
+
+
+
+         // MOVER
+
+         $Tab[$lf][$cf] = $Tab[$li][$ci];
+
+         $Tab[$li][$ci] = 0;
+
+
+
+         return $Tab;
+
+
+
+      }
+
+
+
+   }
+
+
+
+   // Bispo
+
+   elseif( $Tab[$li][$ci] == '5x' or $Tab[$li][$ci] == '5y' ) {
+
+
+
+      if( abs($li - $lf) == abs($ci - $cf) ) {
+
+
+
+         if( $Tab[$lf][$cf] <> 0 ) {
+
+            print( 'Captura Feita' );
+
+         }
+
+
+
+         // MOVER
+
+         $Tab[$lf][$cf] = $Tab[$li][$ci];
+
+         $Tab[$li][$ci] = 0;
+
+
+
+         return $Tab;
+
+      }
+
+
+
+   }
+
+
+
+   print( 'ERRO. Movimento incorreto.' );
+
+   return FALSE;
+
+
+
+}
+
+
+
+/**
+
+*
+
+* Questão 3
+
+*
+
+**/
+
+
+
+function Relatorio( $Tab ) {
+
+
+
+   for( $l = 1; $l <= 8; $l++ ) {
+
+      for( $c = 1; $c <= 8; $c++ ) {
+
+
+
+         if( $l == 1 and $c >= 4 and $c <= 5 ) {
+
+            $Posicao = 'Valido';
+
+         }
+
+         if( $l == 2 and c >= 4 and c <= 6 ) {
+
+            $Posicao = 'Valido';
+
+         }
+
+         if( $l == 3 and c >= 3 and c <= 6 ) {
+
+            $Posicao = 'Valido';
+
+         }
+
+         if( $l == 4 and c >= 3 and c <= 7 ) {
+
+            $Posicao = 'Valido';
+
+         }
+
+         if( $l == 5 and c >= 2 and c <= 7 ) {
+
+            $Posicao = 'Valido';
+
+         }
+
+         if( $l == 6 or $l == 7 ) {
+
+            $Posicao = 'Valido';
+
+         }
+
+         if( $l == 8 and c >= 2 and c <= 3 ) {
+
+            $Posicao = 'Valido';
+
+         }
+
+
+
+         if( $Posicao == 'Valido' ) {
+
+            switch( $Tab[$l][$c] ) {
+
+               case '0' : $Nada = $Nada + 1; break;
+
+               case '1x': $ReiX = $ReiX + 1; break;
+
+               case '2x': $DamaX = $DamaX + 1; break;
+
+               case '3x': $CavaloX = $CavaloX + 1; break;
+
+               case '4x': $TorreX = $TorreX + 1; break;
+
+               case '5x': $BispoX = $BispoX + 1; break;
+
+               case '6x': $PeaoX = $PeaoX + 1; break;
+
+               case '1y': $ReiY = $ReiY + 1; break;
+
+               case '2y': $DamaY = $DamaY + 1; break;
+
+               case '3y': $CavaloY = $CavaloY + 1; break;
+
+               case '4y': $TorreY = $TorreY + 1; break;
+
+               case '5y': $BispoY = $BispoY + 1; break;
+
+               case '6y': $PeaoY = $PeaoY + 1; break;
+
+            }
+
+         }
+
+         $Posicao = '';
+
+      }
+
+   }
+
+
+
+
+
+   print( '
+
+    Jogador X<br />
+
+    Rei - ' . $ReiX . '<br />
+
+    Dama - ' . $DamaX . '<br />
+
+    Cavalo - ' . $CavaloX . '<br />
+
+    Torre - ' . $TorreX . '<br />
+
+    Bispo - ' . $BispoX . '<br />
+
+    Peao - ' . $PeaoX . '<br />
+
+<br />
+
+    Jogador Y<br />
+
+    Rei - ' . $ReiY . '<br />
+
+    Dama - ' . $DamaY . '<br />
+
+    Cavalo - ' . $CavaloY . '<br />
+
+    Torre - ' . $TorreY . '<br />
+
+    Bispo - ' . $BispoY . '<br />
+
+    Peao - ' . $PeaoY . '<br />
+
+<br />
+
+    Ausencia - ' . $Nada );
+
+
+
+}
+
+
+
+
+
+</pre>
+
+
+
+</div>
+
+
+
+  </div>
+
+
+
+  <div id="apoio">
+
+    <h2>Apoio</h2>
+
+    <ul>
+
+      <li class="hostnet"><a href="http://www.hostnet.com.br" target="_blank">Hostnet</a></li>
+
+      <li class="ilearn"><a href="http://www.ilearn.com.br" target="_blank">Ilearn</a></li>
+
+      <li class="infnet"><a href="http://www.infnet.com.br" target="_blank">Infnet</a></li>
+
+      <li class="iped"><a href="http://www.iped.com.br" target="_blank">iPED</a></li>
+
+      <li class="abrasol"><a href="http://www.abrasol.org.br" target="_blank">Abrasol</a></li>
+
+      <li class="www"><a href="http://www.revistaw.com.br" target="_blank">Revista W</a></li>
+
+      <li class="imd"><a href="http://www.imd.com.br" target="_blank">IMD</a></li>
+
+    </ul>
+
+  </div>
+
+
+
+  <div class="cb"></div>
+
+</div>
+
+
+
+</div></div>
+
+
+
+<div id="rodape"><div>
+
+  copyright 2001–2007 Digirati<br />Todos os direitos reservados
+
+</div></div>

@@ -2,7 +2,7 @@
 dna_string = input()
 k = int(input())
 
-# criando dicionário com todos os k-mer
+# criando dicionario com todos os k-mer
 kmer = {}
 for i in range(len(dna_string)):
     palavra = dna_string[i:i+k]
@@ -11,7 +11,7 @@ for i in range(len(dna_string)):
     else:
         kmer[palavra] = 1
 
-# criando lista com os k-mer máximos
+# criando lista com os k-mer maximos
 max = 0
 lista_max_kmer = []
 for key in kmer:
@@ -22,4 +22,4 @@ for key in kmer:
         lista_max_kmer += [key]
 
 # saida
-print(lista_max_kmer)
+print(" ".join(map(str, lista_max_kmer)))

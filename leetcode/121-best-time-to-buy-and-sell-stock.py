@@ -32,7 +32,7 @@ Return the maximum profit you can achieve from this transaction. If you cannot a
 def maxProfit(prices: List[int]) -> int:
     ''' 
     O(n)
-    Look backwards in time...
+    Look backwards in time... sliding window
     >>> maxProfit([7,1,5,3,6,4])
     5
     >>> maxProfit([7,6,4,3,1])

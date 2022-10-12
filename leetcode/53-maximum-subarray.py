@@ -24,8 +24,8 @@ Output: 23
 
 Constraints:
 
-1 <= nums.length <= 105
--104 <= nums[i] <= 104
+1 <= nums.length <= 10^5
+-10^4 <= nums[i] <= 10^4
 '''
 def maxSubArray(nums: List[int]) -> int:
     """
@@ -37,7 +37,7 @@ def maxSubArray(nums: List[int]) -> int:
     >>> maxSubArray([5,4,-1,7,8])
     23
     """
-    current_max, max_untill_now = 0, -105
+    current_max, max_untill_now = 0, -100001
     for num in nums:
         current_max = max(num, current_max + num)
         max_untill_now = max(max_untill_now, current_max)
